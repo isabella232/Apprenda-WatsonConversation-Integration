@@ -5,6 +5,7 @@ The following repository is meant to help and provide Add-On developers with a r
 
 Additional information about creating Add-Ons can be found here: 
 * http://docs.apprenda.com/current/addons
+* http://docs.apprenda.com/6-5/addoncreation
 
 # How to Use?
 1. Clone the repository.
