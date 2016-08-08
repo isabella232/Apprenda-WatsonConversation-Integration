@@ -1,0 +1,16 @@
+C:\code\sample-basicaddon\Apprenda.BasicAddon\Apprenda.BasicAddon\bin\Debug\Apprenda.BasicAddon.dll
+C:\code\sample-basicaddon\Apprenda.BasicAddon\Apprenda.BasicAddon\bin\Debug\Apprenda.BasicAddon.pdb
+C:\code\sample-basicaddon\Apprenda.BasicAddon\Apprenda.BasicAddon\bin\Debug\SaaSGrid.API.dll
+C:\code\sample-basicaddon\Apprenda.BasicAddon\Apprenda.BasicAddon\bin\Debug\Apprenda.Utils.dll
+C:\code\sample-basicaddon\Apprenda.BasicAddon\Apprenda.BasicAddon\obj\Debug\Apprenda.BasicAddon.csprojResolveAssemblyReference.cache
+C:\code\sample-basicaddon\Apprenda.BasicAddon\Apprenda.BasicAddon\obj\Debug\Apprenda.BasicAddon.dll
+C:\code\sample-basicaddon\Apprenda.BasicAddon\Apprenda.BasicAddon\obj\Debug\Apprenda.BasicAddon.pdb
+C:\code\sample-basicaddon\Apprenda.BasicAddon\Apprenda.BasicAddon\bin\Debug\AddonManifest.xml
+C:\code\addon-shell\Apprenda.BasicAddon\Apprenda.BasicAddon\bin\Debug\AddonManifest.xml
+C:\code\addon-shell\Apprenda.BasicAddon\Apprenda.BasicAddon\bin\Debug\Apprenda.BasicAddon.dll
+C:\code\addon-shell\Apprenda.BasicAddon\Apprenda.BasicAddon\bin\Debug\Apprenda.BasicAddon.pdb
+C:\code\addon-shell\Apprenda.BasicAddon\Apprenda.BasicAddon\bin\Debug\SaaSGrid.API.dll
+C:\code\addon-shell\Apprenda.BasicAddon\Apprenda.BasicAddon\bin\Debug\Apprenda.Utils.dll
+C:\code\addon-shell\Apprenda.BasicAddon\Apprenda.BasicAddon\obj\Debug\Apprenda.BasicAddon.csprojResolveAssemblyReference.cache
+C:\code\addon-shell\Apprenda.BasicAddon\Apprenda.BasicAddon\obj\Debug\Apprenda.BasicAddon.dll
+C:\code\addon-shell\Apprenda.BasicAddon\Apprenda.BasicAddon\obj\Debug\Apprenda.BasicAddon.pdb
