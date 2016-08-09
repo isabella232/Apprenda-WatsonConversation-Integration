@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Apprenda.SaaSGrid.Addons;
 
-namespace Apprenda.BasicAddon
+namespace Apprenda.Sample.AddOn
 {
-    public class AddOnCreator : AddonBase
+    public class MySampleAddOn : AddonBase
     {
         public override OperationResult Deprovision(AddonDeprovisionRequest request)
         {
@@ -23,7 +23,8 @@ namespace Apprenda.BasicAddon
             /*The Provision method provisions the instance for the service you are setting up. Within this method, you can access the information
              requested from the developer (if any) by iterating through the request.DeveloperParameters object.
              * At the end of the provisioning process, simply return the connection information for the service that was provisioned.*/
-            return new ProvisionAddOnResult { ConnectionData = string.Format("addon-location"), EndUserMessage = "The Add-On was provisioned successfully", IsSuccess = true };
+            var result = new ProvisionAddOnResult(string.Format("addon-location"), true, "The Add-On was provisioned successfully");
+            return result;
         }
 
         public override OperationResult Test(AddonTestRequest request)

@@ -7,8 +7,8 @@
     <ProjectGuid>{D2059EFA-8ADE-44F1-AC4B-ACE2FFE1E494}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Apprenda.BasicAddon</RootNamespace>
-    <AssemblyName>Apprenda.BasicAddon</AssemblyName>
+    <RootNamespace>Apprenda.Sample.AddOn</RootNamespace>
+    <AssemblyName>Apprenda.Sample.AddOn</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Apprenda.Utils, Version=6.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Apprenda.Utils.dll</HintPath>
+    </Reference>
     <Reference Include="SaaSGrid.API, Version=6.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\SaaSGrid.API.dll</HintPath>
@@ -43,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddOnCreator.cs" />
+    <Compile Include="MySampleAddOn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

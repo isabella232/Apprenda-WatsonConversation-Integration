@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apprenda.BasicAddon", "Apprenda.BasicAddon\Apprenda.BasicAddon.csproj", "{D2059EFA-8ADE-44F1-AC4B-ACE2FFE1E494}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apprenda.Sample.AddOn", "Apprenda.Sample.AddOn\Apprenda.Sample.AddOn.csproj", "{D2059EFA-8ADE-44F1-AC4B-ACE2FFE1E494}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
