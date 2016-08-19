@@ -23,7 +23,9 @@ namespace Apprenda.Sample.AddOn
             /*The Provision method provisions the instance for the service you are setting up. Within this method, you can access the information
              requested from the developer (if any) by iterating through the request.DeveloperParameters object.
              * At the end of the provisioning process, simply return the connection information for the service that was provisioned.*/
-            var result = new ProvisionAddOnResult(string.Format("addon-location"), true, "The Add-On was provisioned successfully");
+            //Retrieving developer parameters
+            var parameter = request.DeveloperParameters.First(param => param.Key == "RequiredParameter");
+            var result = new ProvisionAddOnResult(string.Format("addon-location: {0}", parameter.Value), true, string.Format("The Add-On was provisioned successfully."));
             return result;
         }
 
