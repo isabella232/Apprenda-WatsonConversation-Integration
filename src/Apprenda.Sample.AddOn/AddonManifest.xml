@@ -3,13 +3,15 @@
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xmlns="http://schemas.apprenda.com/AddonManifest"
                xsi:schemaLocation="http://schemas.apprenda.com/AddonManifest https://apprenda.com/schemas/platform/6.5/AddonManifest.xsd"
-               name="Sample Addon"
-               description="Sample Addon for training purposes"
+               name="BluemixAddon"
+               description="Provides Bluemix Services to Apprenda Applications"
                deploymentNotes=""
                developerHelp=""
                vendor="Apprenda"
-               author="Sales Engineering"
+               author="Joseph Truncale"
                version="1.0.0"
+               provisioningUsername=""
+               provisioningPassword=""
                manifestVersion="2">
  <!--Documentation
  Add-On documentation: http://docs.apprenda.com/current/addons 
@@ -17,15 +19,20 @@
   <!--Properties allows you to configure the back-end properties of the Add-On. These are not shown to the developer but rather are used during the
   provisioning process.-->
   <properties>
-    <property key="ClusterCredentials" displayName="Credentials for the Cluster" description="Please specify the cluster that we will be provisioning against" value=""/>
+    <property key="User" displayName="Bluemix Username" description="Username to authenticate with Bluemix" value=""/>
+    <property key="Pass" displayName="Bluemix Password" description="Password to authenticate with Bluemix" value=""/>
+    <property key="Space" displayName="Space" description="The space within Bluemix where the service instance will be provisioned" value="dev"/>
+    <property key="API_URL" displayName="Bluemix API URL" description="The URL of the Bluemix API" value="http://api.ng.bluemix.net"/>
+    <property key="API_Version" displayName="Bluemix API Version" description="The version of the Bluemix API" value="v2"/>
   </properties>
-
   <!--Parameters allows you to expose certain parameters for the developer to configure. As the developer of the Add-On, you have access
   to the information provided and can use it in your provisioning/test logic.-->
   <parameters allowUserDefinedParameters="true">
-    <parameter key="RequiredParameter" displayName="Required Parameter" isRequired="true" isEncrypted="false" description="A parameter that is required" />
+    <parameter key="ServiceName" displayName="Bluemix Service Name" description="The name of the service in the Bluemix catalog (ie. watson_vision_combined)"/>
+    <parameter key="Name" displayName="Service Name" description="A name for your instance of the service. Must be unique for all of Bluemix"/>
+    <!--<parameter key="RequiredParameter" displayName="Required Parameter" isRequired="true" isEncrypted="false" description="A parameter that is required" />
     <parameter key="EncryptedParameter" displayName="Encrypted Parameter" isRequired="false" isEncrypted="true" description="A parameter that is encrypted when stored in the DeployedAddOnParameters table" />
     <parameter key="OptionalParameter" displayName="Optional Parameter" isRequired="false" isEncrypted="false" description="A parameter that is optional" />
-    <parameter key="DefaultValueParameter" displayName="Parameter w/ Default Value" isRequired="false" isEncrypted="false" defaultValue="default" description="A parameter that has a default value" />
+    <parameter key="DefaultValueParameter" displayName="Parameter w/ Default Value" isRequired="false" isEncrypted="false" defaultValue="default" description="A parameter that has a default value" />-->
   </parameters>
 </addonManifest>
