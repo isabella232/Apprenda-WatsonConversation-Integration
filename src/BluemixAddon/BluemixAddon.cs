@@ -13,8 +13,8 @@ namespace Apprenda.Bluemix.AddOn
 {
     public class BluemixAddon : AddonBase
     {
-        string end_point = "http://api.ng.bluemix.net";
-        string bm_version = "v2";
+        string end_point;
+        string bm_version;
 
         private static readonly ILogger log = LogManager.Instance().GetLogger(typeof(BluemixAddon));
 
@@ -30,6 +30,9 @@ namespace Apprenda.Bluemix.AddOn
             var manifest = _request.Manifest;
             var devParameters = _request.DeveloperParameters;
             var devOptions = BMDeveloperOptions.Parse(devParameters, manifest);
+
+            end_point = devOptions.api_url;
+            bm_version = devOptions.api_version;
 
             try
             {
@@ -64,6 +67,10 @@ namespace Apprenda.Bluemix.AddOn
             var manifest = _request.Manifest;
             var devParameters = _request.DeveloperParameters;
             var devOptions = BMDeveloperOptions.Parse(devParameters, manifest);
+
+            end_point = devOptions.api_url;
+            bm_version = devOptions.api_version;
+
             JObject instanceDetails = new JObject();
 
             try
@@ -84,18 +91,39 @@ namespace Apprenda.Bluemix.AddOn
                 return provisionResult;
             }
 
-
             provisionResult.IsSuccess = true;
             provisionResult.ConnectionData = instanceDetails.ToString(Formatting.None);
             return provisionResult;
         }
 
-        public override OperationResult Test(AddonTestRequest request)
+        public override OperationResult Test(AddonTestRequest _request)
         {
             /*The test method allows you to test whether the Add-On was developed and configured properly and that any dependent systems are
              operating normally. During this method, you will want to go through a similar workflow to Provision to ensure proper functioning
              * of the Add-On.*/
-            return new OperationResult { EndUserMessage = "The Add-On was tested successfully", IsSuccess = true };
+            var manifest = _request.Manifest;
+            var devParameters = _request.DeveloperParameters;
+            var devOptions = BMDeveloperOptions.Parse(devParameters, manifest);
+            var testResult = new OperationResult { EndUserMessage = string.Empty, IsSuccess = false };
+
+            end_point = devOptions.api_url;
+            bm_version = devOptions.api_version;
+
+            try
+            {
+                authenticate(devOptions.user, devOptions.pass);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = string.Format("BluemixAddon Testing Error: {0}\n{1}", ex, ex.StackTrace);
+                log.Error(errorMessage);
+                testResult.EndUserMessage = errorMessage;
+                return testResult;
+            }
+
+            testResult.EndUserMessage = "BluemixAddon Add-On was tested successfully";
+            testResult.IsSuccess = true;
+            return testResult;
         }
 
         public string authenticate(string user, string pass)
@@ -238,12 +266,10 @@ namespace Apprenda.Bluemix.AddOn
         public string flattenJSON(JObject json)
         {
             var flattenedJSON = string.Empty;
-
             foreach(var item in json)
             {
                 flattenedJSON = flattenedJSON + ';' + item;
             }
-
             return flattenedJSON;
         }
 

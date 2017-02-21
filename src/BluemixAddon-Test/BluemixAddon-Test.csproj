@@ -66,7 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Apprenda.Sample.AddOn\BluemixAddon.csproj">
+    <ProjectReference Include="..\BluemixAddon\BluemixAddon.csproj">
       <Project>{d2059efa-8ade-44f1-ac4b-ace2ffe1e494}</Project>
       <Name>BluemixAddon</Name>
     </ProjectReference>
