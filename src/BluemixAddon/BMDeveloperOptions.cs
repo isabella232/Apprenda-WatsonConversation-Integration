@@ -17,6 +17,8 @@ namespace Apprenda.Bluemix.AddOn
         public string api_version { get; set; }
         public string servicename { get; set; }
         public string name { get; set; }
+        public string developeralias { get; set; }
+        public string developerid { get; set; }
 
         private static readonly ILogger log = LogManager.Instance().GetLogger(typeof(BluemixAddon));
 
@@ -33,7 +35,7 @@ namespace Apprenda.Bluemix.AddOn
                 }
             }
 
-            log.Error(string.Format("The developer option '{0}' was not expected and is not understood. Value: {1}", _key, _value));
+            log.Error(string.Format("The developer option '{0}' was not expected.", _key));
             return;
         }
 

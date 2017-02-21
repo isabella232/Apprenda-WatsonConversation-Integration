@@ -8,6 +8,7 @@ using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Apprenda.Services.Logging;
+using System.Net;
 
 namespace Apprenda.Bluemix.AddOn
 {
@@ -111,7 +112,8 @@ namespace Apprenda.Bluemix.AddOn
 
             try
             {
-                authenticate(devOptions.user, devOptions.pass);
+                var token = authenticate(devOptions.user, devOptions.pass);
+                var servicePlansURL = getServicePlansURL(token, devOptions.servicename);
             }
             catch (Exception ex)
             {
@@ -137,10 +139,17 @@ namespace Apprenda.Bluemix.AddOn
             request.AddHeader("authorization", "Basic Y2Y6");
             var authString = string.Format("grant_type=password&username={0}&password={1}", username, password);
             request.AddParameter("application/x-www-form-urlencoded", authString, ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);
-            var json_response = JsonConvert.DeserializeObject<dynamic>(response.Content);
-            var token = json_response.access_token;
-            return token;
+
+            try
+            {
+                IRestResponse response = client.Execute(request);
+                var json_response = JsonConvert.DeserializeObject<dynamic>(response.Content);
+                var token = json_response.access_token;
+                return token;
+            }catch(Exception ex)
+            {
+                throw;
+            }
         }
 
         public string getServicePlansURL(string token, string name)
@@ -149,11 +158,23 @@ namespace Apprenda.Bluemix.AddOn
             var client = new RestClient(url);
             var request = new RestRequest(Method.GET);
             request.AddHeader("authorization", "bearer " + token);
-            IRestResponse response = client.Execute(request);
-            var responseObject = JsonConvert.DeserializeObject<dynamic>(response.Content);
-            var responseArray = responseObject.resources;
-            var service_plans_url = responseArray[0].entity.service_plans_url;
-            return service_plans_url;
+            try
+            {
+                IRestResponse response = client.Execute(request);
+                var responseObject = JsonConvert.DeserializeObject<dynamic>(response.Content);
+                var responseArray = responseObject.resources;
+
+                if (responseObject.total_results == 0)
+                {
+                    throw new Exception("Service not found");
+                }
+
+                var service_plans_url = responseArray[0].entity.service_plans_url;
+                return service_plans_url;
+            }catch(Exception ex)
+            {
+                throw;
+            }
         }
 
         public string getServicePlanGUID(string token, string service_plans_url)
@@ -162,9 +183,15 @@ namespace Apprenda.Bluemix.AddOn
             var client = new RestClient(url);
             var request = new RestRequest(Method.GET);
             request.AddHeader("authorization", "bearer " + token);
-            IRestResponse response = client.Execute(request);
-            var responseObject = JsonConvert.DeserializeObject<dynamic>(response.Content);
-            return responseObject.resources[0].metadata.guid;
+            try
+            {
+                IRestResponse response = client.Execute(request);
+                var responseObject = JsonConvert.DeserializeObject<dynamic>(response.Content);
+                return responseObject.resources[0].metadata.guid;
+            }catch(Exception ex)
+            {
+                throw;
+            }
         }
 
         public string getServiceGUID(string token, string name)
@@ -173,9 +200,15 @@ namespace Apprenda.Bluemix.AddOn
             var client = new RestClient(url);
             var request = new RestRequest(Method.GET);
             request.AddHeader("authorization", "bearer " + token);
-            IRestResponse response = client.Execute(request);
-            var responseObject = JsonConvert.DeserializeObject<dynamic>(response.Content);
-            return responseObject.resources[0].metadata.guid;
+            try
+            {
+                IRestResponse response = client.Execute(request);
+                var responseObject = JsonConvert.DeserializeObject<dynamic>(response.Content);
+                return responseObject.resources[0].metadata.guid;
+            }catch(Exception ex)
+            {
+                throw;
+            }
         }
 
         public string createServiceInstance(string token, string name, string servicePlanGUID, string spaceGUID)
@@ -201,7 +234,7 @@ namespace Apprenda.Bluemix.AddOn
             catch (Exception ex)
             {
                 log.Info("Error creating service instance: " + ex);
-                return null;
+                throw;
             }
 
         }
@@ -212,10 +245,16 @@ namespace Apprenda.Bluemix.AddOn
             var client = new RestClient(url);
             var request = new RestRequest(Method.GET);
             request.AddHeader("authorization", "bearer " + token);
-            IRestResponse response = client.Execute(request);
-            var responseObject = JsonConvert.DeserializeObject<dynamic>(response.Content);
-            var responseArray = responseObject.resources;
-            return responseArray[responseArray.Count - 1].metadata.guid;
+            try
+            {
+                IRestResponse response = client.Execute(request);
+                var responseObject = JsonConvert.DeserializeObject<dynamic>(response.Content);
+                var responseArray = responseObject.resources;
+                return responseArray[responseArray.Count - 1].metadata.guid;
+            }catch(Exception ex)
+            {
+                throw;
+            }
         }
 
         public JObject createInstanceDetails(string token, string name, string serviceInstanceGUID)
@@ -238,7 +277,7 @@ namespace Apprenda.Bluemix.AddOn
             }catch(Exception ex)
             {
                 log.Info("Error requesting instance details: " + ex);
-                return null;
+                throw;
             }
         }
 
@@ -258,7 +297,7 @@ namespace Apprenda.Bluemix.AddOn
             catch (Exception ex)
             {
                 log.Info("Error creating service instance: " + ex);
-                return null;
+                throw;
             }
 
         }
