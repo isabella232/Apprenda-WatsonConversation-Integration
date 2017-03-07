@@ -40,7 +40,7 @@ namespace Apprenda.WatsonConversation.Addon
             try
             {
                 var token = authenticate(devOptions.user, devOptions.pass, devOptions.tenant);
-                status = deleteApp(token, devOptions.alias);
+                deleteApp(token, devOptions.alias);
                 log.Info("WatsonConversationAddon Deprovisioned Successfully");
             }
             catch (Exception ex)
@@ -69,7 +69,6 @@ namespace Apprenda.WatsonConversation.Addon
             var devParameters = _request.DeveloperParameters;
             var devOptions = WCDeveloperOptions.Parse(devParameters, manifest);
             var appURL = "";
-            var status = "";
 
             cloud_url = devOptions.cloudurl;
             appname = devOptions.name;
@@ -80,10 +79,10 @@ namespace Apprenda.WatsonConversation.Addon
             try
             {
                 var token = authenticate(devOptions.user, devOptions.pass, devOptions.tenant);
-                status = createApp(token, appname, appalias, "NodeJS API Server for Watson Conversation");
+                createApp(token, appname, appalias, "NodeJS API Server for Watson Conversation");
                 var archivePath = createArchive(devOptions.workspace, devOptions.conversationusername, devOptions.conversationpassword);
-                status = setArchive(token, appalias, valias, archivePath);
-                status = promoteApp(token, appalias, valias);
+                setArchive(token, appalias, valias, archivePath);
+                promoteApp(token, appalias, valias);
                 appURL = getAppURL(token, appalias, valias);
                 log.Info("WatsonConversationAddon Provisioned Successfully");
             }
