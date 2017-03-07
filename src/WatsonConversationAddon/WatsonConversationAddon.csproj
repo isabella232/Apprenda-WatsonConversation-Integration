@@ -7,8 +7,8 @@
     <ProjectGuid>{D2059EFA-8ADE-44F1-AC4B-ACE2FFE1E494}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Apprenda.Sample.AddOn</RootNamespace>
-    <AssemblyName>Apprenda.Sample.AddOn</AssemblyName>
+    <RootNamespace>Apprenda.WatsonConversation.Addon</RootNamespace>
+    <AssemblyName>Apprenda.WatsonConversation.Addon</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,6 +48,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,19 +57,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BluemixAddon.cs" />
-    <Compile Include="BMDeveloperOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WatsonConversationAddon.cs" />
+    <Compile Include="WCDeveloperOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddonManifest.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DockerArchive\DeploymentManifest.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DockerArchive\linuxServices\docker\slug.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)DockerArchive\*.*" "$(ProjectDir)$(OutDir)DockerArchive" /Y/D/E
+</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

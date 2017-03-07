@@ -6,23 +6,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apprenda.Bluemix.AddOn
+namespace Apprenda.WatsonConversation.Addon
 {
-    class BMDeveloperOptions
+    class WCDeveloperOptions
     {
         public string user { get; set; }
         public string pass { get; set; }
-        public string space { get; set; }
-        public string api_url { get; set; }
-        public string api_version { get; set; }
-        public string servicename { get; set; }
+        public string tenant { get; set; }
+        public string workspace { get; set; }
+        public string conversationusername { get; set; }
+        public string conversationpassword { get; set; }
+        public string cloudurl { get; set; }
         public string name { get; set; }
+        public string alias { get; set; }
         public string developeralias { get; set; }
         public string developerid { get; set; }
+        public string instancealias { get; set; }
 
-        private static readonly ILogger log = LogManager.Instance().GetLogger(typeof(BluemixAddon));
+        private static readonly ILogger log = LogManager.Instance().GetLogger(typeof(WatsonConversationAddon));
 
-        private static void MapToOption(BMDeveloperOptions _options, string _key, string _value)
+        private static void MapToOption(WCDeveloperOptions _options, string _key, string _value)
         {
             var _developerOptions = _options.GetType().GetProperties();
 
@@ -39,9 +42,9 @@ namespace Apprenda.Bluemix.AddOn
             return;
         }
 
-        public static BMDeveloperOptions Parse(IEnumerable<AddonParameter> _developerParameters, AddonManifest manifest)
+        public static WCDeveloperOptions Parse(IEnumerable<AddonParameter> _developerParameters, AddonManifest manifest)
         {
-            var options = new BMDeveloperOptions();
+            var options = new WCDeveloperOptions();
             foreach (var parameter in manifest.Properties)
             {
                 MapToOption(options, parameter.Key.ToLowerInvariant(), parameter.Value);
