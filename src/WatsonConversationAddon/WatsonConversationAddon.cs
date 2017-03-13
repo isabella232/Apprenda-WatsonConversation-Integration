@@ -7,6 +7,7 @@ using Apprenda.Services.Logging;
 using System.Xml;
 using System.IO;
 using System.IO.Compression;
+using System.Net;
 
 namespace Apprenda.WatsonConversation.Addon
 {
@@ -33,7 +34,6 @@ namespace Apprenda.WatsonConversation.Addon
             var manifest = _request.Manifest;
             var devParameters = _request.DeveloperParameters;
             var devOptions = WCDeveloperOptions.Parse(devParameters, manifest);
-            var status = "";
 
             cloud_url = devOptions.cloudurl;
 
@@ -109,10 +109,16 @@ namespace Apprenda.WatsonConversation.Addon
             var testResult = new OperationResult { EndUserMessage = string.Empty, IsSuccess = false };
 
             cloud_url = devOptions.cloudurl;
+            appalias = devOptions.alias;
 
             try
             {
                 var token = authenticate(devOptions.user, devOptions.pass, devOptions.tenant);
+                int statusCode = getApp(token, appalias);
+                if (statusCode!=200)
+                {
+                    throw new Exception("Watson Conversation API has not successfully been deployed in Apprenda");
+                }
             }
             catch (Exception ex)
             {
@@ -147,6 +153,7 @@ namespace Apprenda.WatsonConversation.Addon
                 return token;
             }catch(Exception ex)
             {
+                log.Info("Error authenticating: " + ex);
                 throw;
             }
         }
@@ -317,6 +324,28 @@ namespace Apprenda.WatsonConversation.Addon
                 IRestResponse response = client.Execute(request);
                 var json_response = JsonConvert.DeserializeObject<dynamic>(response.Content);
                 return json_response.url;
+            }
+            catch (Exception ex)
+            {
+                log.Info("Error getting application URL: " + ex);
+                throw;
+            }
+        }
+
+        public int getApp(string token, string alias)
+        {
+            var url = string.Format("{0}{1}/apps/{2}", cloud_url, api_url, alias);
+
+            var client = new RestClient(url);
+            var request = new RestRequest(Method.GET);
+
+            request.AddHeader("ApprendaSessionToken", token);
+            request.AddHeader("Content-Type", "application/json");
+
+            try
+            {
+                IRestResponse response = client.Execute(request);
+                return (int)response.StatusCode;
             }
             catch (Exception ex)
             {

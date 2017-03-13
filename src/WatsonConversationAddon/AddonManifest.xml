@@ -20,8 +20,9 @@
   provisioning process.-->
   <properties>
     <property key="User" displayName="Apprenda Service Account User" description="Username to deploy an app to the Apprenda service tenant" value=""/>
-    <property key="Pass" displayName="Apprenda Service Account Password" isEncrypted="true" description="Password to deploy an app to the Apprenda service tenant" value=""/>
+    <property key="Pass" displayName="Apprenda Service Account Password" description="Password to deploy an app to the Apprenda service tenant" value=""/>
     <property key="Tenant" displayName="Apprenda Service Account Tenant" description="Tenant of the Apprenda Service Account" value=""/>
+    <property key="CloudURL" displayName="Apprenda Cloud URL" description="Apprenda Cloud URL that you're deploying to (ie. https://apps.myapprendaurl.com)"/>
   </properties>
   <!--Parameters allows you to expose certain parameters for the developer to configure. As the developer of the Add-On, you have access
   to the information provided and can use it in your provisioning/test logic.-->
@@ -29,7 +30,6 @@
     <parameter key="Workspace" displayName="Workspace ID" description="The Watson Conversation Workspace ID that you want to consume" defaultValue="62c8a6c5-7be7-4301-bc67-025ba42ae925"/>
     <parameter key="ConversationUsername" displayName="Conversation Username" description="The Watson Conversation Username from your service credentials" defaultValue="7d2f4253-6c5d-4596-8242-8fbba6343153"/>
     <parameter key="ConversationPassword" displayName="Conversation Password" description="The Watson Conversation Password from your service credentials" defaultValue="t4v7rQedEQ7k"/>
-    <parameter key="CloudURL" displayName="Apprenda Cloud URL" description="Apprenda Cloud URL that you're deploying to (ie. https://apps.myapprendaurl.com)"/>
     <parameter key="Name" displayName="Application Name" description="A name for your API that helps identify the workspace used"/>
     <parameter key="Alias" displayName="Application Alias" description="A alias for your API that helps identify the workspace used (a-z/0-9). No special characters."/>
     <!--<parameter key="RequiredParameter" displayName="Required Parameter" isRequired="true" isEncrypted="false" description="A parameter that is required" />
