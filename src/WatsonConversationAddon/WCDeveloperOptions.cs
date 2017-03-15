@@ -10,8 +10,6 @@ namespace Apprenda.WatsonConversation.Addon
 {
     class WCDeveloperOptions
     {
-        public string user { get; set; }
-        public string pass { get; set; }
         public string tenant { get; set; }
         public string workspace { get; set; }
         public string conversationusername { get; set; }
