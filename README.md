@@ -33,7 +33,6 @@ The Add-on creates a Watson Conversation API App (nodeJS) within Apprenda that a
     3. Enter the "Conversation Username" and "Conversation Password" as defined within the "Service Credentials" in your Conversation Service.
     4. Enter the "Application Name" and "Application Alias" which will tell Apprenda how to name and reference your Watson Conversation API App.
     
-7. If you'd like to check if your app deployed successfully, go back to the Add-ons section in the SOC and click the test button (only enter the "Application Alias"). 
-
-
 ![](/readme_images/watsonconversation_provision.png)
+
+7. If you'd like to check if your app deployed successfully, go back to the Add-ons section in the SOC and click the test button (only enter the "Application Alias"). 
