@@ -14,16 +14,12 @@ The Add-on creates a Watson Conversation API App (nodeJS) within Apprenda that a
 ## Usage
 1. In the SOC, go to "Configuration->Platform Addons->Edit"
 2. Enter your Apprenda credentials on the general page. This account will deploy the Watson API on Apprenda. 
-
-
-![](/readme_images/watsonconversation_general.png)
+    ![](/readme_images/watsonconversation_general.png)
 
 
 3. On the configuration tab, enter your Apprenda Tenant. 
 4. Add the full Apprenda Cloud URL (ie. "https://apps.myapprendaurl.com") 
-
-
-![](/readme_images/watsonconversation_config.png)
+    ![](/readme_images/watsonconversation_config.png)
 
 
 5. Next, go to the Apprenda Developer Portal and click Addons on the left side.
@@ -33,6 +29,6 @@ The Add-on creates a Watson Conversation API App (nodeJS) within Apprenda that a
     3. Enter the "Conversation Username" and "Conversation Password" as defined within the "Service Credentials" in your Conversation Service.
     4. Enter the "Application Name" and "Application Alias" which will tell Apprenda how to name and reference your Watson Conversation API App.
     
-![](/readme_images/watsonconversation_provision.png)
+    ![](/readme_images/watsonconversation_provision.png)
 
 7. If you'd like to check if your app deployed successfully, go back to the Add-ons section in the SOC and click the test button (only enter the "Application Alias"). 
