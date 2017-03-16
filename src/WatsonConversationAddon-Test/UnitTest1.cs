@@ -11,9 +11,7 @@ namespace BluemixAddon_Test
         public string authenticate()
         {
             WatsonConversationAddon test = new WatsonConversationAddon();
-            //var token = test.authenticate("cdutra@apprenda.com", "Apprenda2016!", "Dutronlabs"); 
-            //var token = test.authenticate("fluffy@apprenda.com","password", "warkittens");
-            var token = test.authenticate("elustgarten@apprenda.com", "@pprend@", "kramericaindustries");
+            var token = test.authenticate("", "", "");
             System.Diagnostics.Debug.WriteLine(token);
             return token;
         }
@@ -22,7 +20,7 @@ namespace BluemixAddon_Test
         public void createArchive()
         {
             WatsonConversationAddon test = new WatsonConversationAddon();
-            var archivePath = test.createArchive("62c8a6c5-7be7-4301-bc67-025ba42ae925", "7d2f4253-6c5d-4596-8242-8fbba6343153", "t4v7rQedEQ7k");
+            var archivePath = test.createArchive("", "", "");
             System.Diagnostics.Debug.WriteLine(archivePath);
         }
 
@@ -68,7 +66,7 @@ namespace BluemixAddon_Test
         {
             WatsonConversationAddon test = new WatsonConversationAddon();
             var token = authenticate();
-            var archivePath = test.createArchive("62c8a6c5-7be7-4301-bc67-025ba42ae925", "7d2f4253-6c5d-4596-8242-8fbba6343153", "t4v7rQedEQ7k");
+            var archivePath = test.createArchive("", "", "");
             test.createApp(token, "watson-api", "watsonapi", "watson test api");
             test.setArchive(token, "watsonapi", "v1", archivePath);
             test.promoteApp(token, "watsonapi", "v1");
