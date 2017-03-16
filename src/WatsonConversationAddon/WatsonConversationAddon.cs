@@ -40,8 +40,14 @@ namespace Apprenda.WatsonConversation.Addon
             try
             {
                 var token = authenticate(manifest.ProvisioningUsername, manifest.ProvisioningPassword, devOptions.tenant);
-                deleteApp(token, devOptions.alias);
-                log.Info("WatsonConversationAddon Deprovisioned Successfully");
+                int status = deleteApp(token, devOptions.alias);
+                if (status == 204)
+                {
+                    log.Info("WatsonConversationAddon Deprovisioned Successfully");
+                }else
+                {
+                    throw new Exception("Failed to deprovision");
+                }
             }
             catch (Exception ex)
             {
@@ -187,7 +193,7 @@ namespace Apprenda.WatsonConversation.Addon
             }
         }
 
-        public string deleteApp(string token, string alias)
+        public int deleteApp(string token, string alias)
         {
 
             var url = string.Format("{0}{1}/apps/{2}", cloud_url, api_url, alias);
@@ -201,7 +207,7 @@ namespace Apprenda.WatsonConversation.Addon
             try
             {
                 IRestResponse response = client.Execute(request);
-                return response.StatusCode.ToString();
+                return (int)response.StatusCode;
             }
             catch (Exception ex)
             {
