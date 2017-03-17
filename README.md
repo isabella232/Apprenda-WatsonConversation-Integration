@@ -12,22 +12,14 @@ The Add-on creates a Watson Conversation API App (nodeJS) within Apprenda that a
 
 
 ## Usage
-1. In the SOC, go to "Configuration->Platform Addons->Edit"
-2. Enter your Apprenda credentials on the general page. This account will deploy the Watson API on Apprenda. 
-    ![](/readme_images/watsonconversation_general.png)
-
-
-3. On the configuration tab, enter your Apprenda Tenant. 
-4. Add the full Apprenda Cloud URL (ie. "https://apps.myapprendaurl.com") 
-    ![](/readme_images/watsonconversation_config.png)
-
-
-5. Next, go to the Apprenda Developer Portal and click Addons on the left side.
-6. Click on the Bluemix Add-on and click the "+" symbol to provision an instance of the Add-on
-    1. Enter in the "Instance Alias" (how Apprenda will identify your add-on instance)
-    2. Enter the "Workspace ID" as defined within your Conversation Service. 
-    3. Enter the "Conversation Username" and "Conversation Password" as defined within the "Service Credentials" in your Conversation Service.
-    4. Enter the "Application Name" and "Application Alias" which will tell Apprenda how to name and reference your Watson Conversation API App.
+1. Go to the Apprenda Developer Portal and click Addons on the left side.
+2. Click on the Bluemix Add-on and click the "+" symbol to provision an instance of the Add-on
+    1. "Instance Alias" (how Apprenda will identify your add-on instance)
+    2. "Workspace ID" as defined within your Conversation Service. 
+    3. "Conversation Username" and "Conversation Password" as defined within the "Service Credentials" in your Bluemix Conversation Service.
+    4. Apprenda Cloud URL (ie. "https://apps.myapprendaurl.com") 
+    5. Enter the "Application Name" and "Application Alias" which will tell Apprenda how to name and reference your Watson Conversation API App.
+    6. Enter your "Apprenda Username", "Apprenda Password" and "Apprenda Tenant". These credentials will determine how the API is deployed in Apprenda.
     
     ![](/readme_images/watsonconversation_provision.png)
 
