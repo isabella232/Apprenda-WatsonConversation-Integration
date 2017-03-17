@@ -10,7 +10,6 @@ namespace Apprenda.WatsonConversation.Addon
 {
     class WCDeveloperOptions
     {
-        public string tenant { get; set; }
         public string workspace { get; set; }
         public string conversationusername { get; set; }
         public string conversationpassword { get; set; }
@@ -20,6 +19,10 @@ namespace Apprenda.WatsonConversation.Addon
         public string developeralias { get; set; }
         public string developerid { get; set; }
         public string instancealias { get; set; }
+        public string apprendausername { get; set; }
+        public string apprendapassword { get; set; }
+        public string apprendatenant { get; set; }
+
 
         private static readonly ILogger log = LogManager.Instance().GetLogger(typeof(WatsonConversationAddon));
 

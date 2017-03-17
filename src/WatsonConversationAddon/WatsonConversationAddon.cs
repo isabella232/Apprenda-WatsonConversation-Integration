@@ -39,7 +39,7 @@ namespace Apprenda.WatsonConversation.Addon
 
             try
             {
-                var token = authenticate(manifest.ProvisioningUsername, manifest.ProvisioningPassword, devOptions.tenant);
+                var token = authenticate(devOptions.apprendausername, devOptions.apprendapassword, devOptions.apprendatenant);
                 int status = deleteApp(token, devOptions.alias);
                 if (status == 204)
                 {
@@ -84,7 +84,7 @@ namespace Apprenda.WatsonConversation.Addon
 
             try
             {
-                var token = authenticate(manifest.ProvisioningUsername, manifest.ProvisioningPassword, devOptions.tenant);
+                var token = authenticate(devOptions.apprendausername, devOptions.apprendapassword, devOptions.apprendatenant);
                 createApp(token, appname, appalias, "NodeJS API Server for Watson Conversation");
                 var archivePath = createArchive(devOptions.workspace, devOptions.conversationusername, devOptions.conversationpassword);
                 setArchive(token, appalias, valias, archivePath);
@@ -119,7 +119,7 @@ namespace Apprenda.WatsonConversation.Addon
 
             try
             {
-                var token = authenticate(manifest.ProvisioningUsername, manifest.ProvisioningPassword, devOptions.tenant);
+                var token = authenticate(devOptions.apprendausername, devOptions.apprendapassword, devOptions.apprendatenant);
                 int statusCode = getApp(token, appalias);
                 if (statusCode!=200)
                 {
